@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import './Home.css';
+import api from "../axiosConfig";
 
 function Home({ darkMode }) {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const [redirectPath, setRedirectPath] = useState("");
     if (!warningMessageElement) return;
 
     try {
-      const res = await fetch("https://your-backend.onrender.com/api/warning");
+      const res = await fetch("/api/warning");
       
       if (!res.ok) {
         warningMessageElement.innerHTML = "No gym warning message available.";

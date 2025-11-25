@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Contact.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import api from "../axiosConfig";
 
 const warningMessages = [
   "WARNING: Messages are monitored...",
@@ -109,7 +110,7 @@ const Contact = ({ darkMode }) => {
     return;
   }
 
-    fetch("https://your-backend.onrender.com/api/contact", {
+    fetch("/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

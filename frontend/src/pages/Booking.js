@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./Booking.css";
+import api from "../axiosConfig";
 
 // 🖼 Import all equipment images
 import Treadmill from "./images/Treadmill.jpg";
@@ -25,7 +26,7 @@ import T_BarRowMachine from "./images/T_BarRowMachine.jpg";
 import Dumbells from "./images/Dumbells.jpg";
 
 // 🎯 Backend server URL (change if deployed)
-const SERVER = "https://your-backend.onrender.com/api/booking";
+const SERVER = "/api/booking";
 
 // 🏋️ Equipment list with descriptions
 const equipments = [

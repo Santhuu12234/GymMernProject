@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Testimonials.css";
 import { useNavigate } from "react-router-dom";
+import api from "../axiosConfig";
 
 const Testimonials = ({ darkMode }) => {
   const [testimonials, setTestimonials] = useState([]);
@@ -19,7 +20,7 @@ const Testimonials = ({ darkMode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("https://your-backend.onrender.com/api/testimonials").then((res) => {
+    axios.get("/api/testimonials").then((res) => {
       setTestimonials(res.data);
     });
 
@@ -53,8 +54,8 @@ const Testimonials = ({ darkMode }) => {
     const fd = new FormData();
     Object.keys(form).forEach((key) => fd.append(key, form[key]));
 
-    await axios.post("https://your-backend.onrender.com/api/testimonials", fd);
-    const updated = await axios.get("https://your-backend.onrender.com/api/testimonials");
+    await axios.post("/api/testimonials", fd);
+    const updated = await axios.get("/api/testimonials");
     setTestimonials(updated.data);
     setForm({ name: "", role: "", feedback: "", rating: 5, image: null });
     localStorage.removeItem("testimonialForm");

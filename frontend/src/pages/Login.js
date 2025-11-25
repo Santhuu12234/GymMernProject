@@ -5,7 +5,7 @@ import axios from 'axios';
 import './AdminLogin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-
+import api from "../axiosConfig";
 
 const Login = ({ darkMode }) => {
   const location = useLocation();
@@ -80,7 +80,7 @@ const Login = ({ darkMode }) => {
 
   const handleSendOtp = async () => {
     try {
-      const res = await axios.post("https://your-backend.onrender.com/api/auth/forgot-password", { email });
+      const res = await axios.post("/api/auth/forgot-password", { email });
       setMessage(res.data.msg);
       setShowResetFields(true);
     } catch (error) {
@@ -95,7 +95,7 @@ const Login = ({ darkMode }) => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/reset-password", {
+      const res = await axios.post("/api/auth/reset-password", {
         email,
         otp,
         newPassword,
@@ -114,7 +114,7 @@ const Login = ({ darkMode }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const res = await axios.post("/api/auth/login", { email, password });
       const userName = res.data.user.name;
       localStorage.setItem("email", email);
       localStorage.setItem("name", userName);
@@ -136,7 +136,7 @@ const Login = ({ darkMode }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/register", { name, email, password });
+      await axios.post("/api/auth/register", { name, email, password });
       showCenteredModal(`Welcome, ${name}! Your account has been created.`);
       setName('');
       setEmail('');
