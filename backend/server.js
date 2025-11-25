@@ -11,6 +11,8 @@ const path = require("path");
 const progressRoutes = require('./routes/progressRoutes');
 const cron = require('node-cron');
 const warningRoutes = require('./routes/warning');
+const Warning = require("./models/Warning");
+
 
 
 
@@ -22,7 +24,7 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
